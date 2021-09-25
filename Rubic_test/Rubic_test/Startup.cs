@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Rubic_test.Contexts;
 using Rubic_test.Controllers;
 using Rubic_test.Models;
 
@@ -27,6 +28,8 @@ namespace Rubic_test
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BudgetContext>(opt =>
+                opt.UseInMemoryDatabase("Budget"));
+            services.AddDbContext<NoteContext>(opt =>
                 opt.UseInMemoryDatabase("Budget"));
             services.AddControllers();
         }
